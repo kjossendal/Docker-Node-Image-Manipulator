@@ -1,16 +1,10 @@
- ### Amazing Image Changer
+### Amazing Image Changer
 
- This command line app scans for images in ./in folder, 
- and turns them into chalk-looking images in ./out folder,
- then exits.
+This command line app scans for images in ./in folder,
+and turns returns the manipulated images in ./out folder,
+then exits.
 
- It logs to two files in ./logs using Winston module
+the /in and /out file need to mounted as volumes, and can accept env vars so to run do something like this:
 
- It requires node v8.x
-
- The server need to have GraphicsMagick installed, so 
- you might need to do something like installing with apt:
-
- `apt-get install -y graphicsmagick`
-
- index.js is the main entrypoint
+`docker build -t imager .`
+`docker run -v $(pwd)/in:/app/in -v $(pwd)/out:/app/out --env WIDTH=250 HEIGHT=250 imager`
